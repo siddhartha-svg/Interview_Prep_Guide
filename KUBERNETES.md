@@ -180,7 +180,27 @@ Written in **First → Next → Then → Finally** format (150 words).
 **Finally**, I corrected the NetworkPolicy rules, added namespace selectors, and re-applied it. Traffic immediately stabilized. I documented the fix and added a review process for future NetworkPolicy changes.
 
 ---
+9.**“How do you manage Helm releases in production?”** written in **First → Next → Then → Finally** format:
 
+---
+
+## ⭐ **How Do You Manage Helm Releases in Production? (150 Words)**
+
+**First**, I manage Helm releases in production by keeping all Helm charts version-controlled in Git and following a strict GitOps workflow. Each environment (dev, stage, prod) has its own values file. Any change goes through pull-request reviews so deployments are consistent and traceable. I also ensure that every release uses semantic versioning to track changes clearly.
+
+**Next**, before deploying to production, I run `helm lint` and `helm template` to validate the chart, followed by deploying first into staging to verify functionality, configs, secrets, and metrics. This reduces the risk of faulty releases going into production.
+
+**Then**, I use `helm upgrade --install` with a rollback strategy. Helm maintains revision history, so if something goes wrong, I immediately execute:
+
+```bash
+helm rollback <release> <revision>
+```
+
+This ensures quick recovery.
+
+**Finally**, I monitor applications using Prometheus/Grafana and set alerts after each release. I also routinely clean old revisions and automate deployments using ArgoCD or GitHub Actions for safer production Helm releases.
+
+---
 
 
 
