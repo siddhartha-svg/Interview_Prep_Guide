@@ -1,4 +1,4 @@
-Here is a **150-word, interview-ready answer** for **“How you would troubleshoot CrashLoopBackOff in production”**, using **First → Next → Then → Finally** format:
+**“How you would troubleshoot CrashLoopBackOff in production”**, using **First → Next → Then → Finally** format:
 
 ---
 
