@@ -273,7 +273,23 @@ If pods are stuck in *ContainerCreating*, *Pending*, or *ImagePullBackOff*, that
 
 ---
 
+13. **which deployment strategies your team follows and when to use each strategy** :
 
+---
+
+## ⭐ **Deployment Strategies We Follow and When to Use Them (150 Words)**
+
+**First**, our team mainly uses **Rolling Update** for regular microservice deployments. It gradually replaces old pods with new ones, ensuring zero downtime. We use this strategy when changes are safe, backward-compatible, and do not require database schema changes. It’s ideal for most daily releases.
+
+**Next**, we use **Blue-Green Deployment** when we need a **safe rollback path**. In this method, Blue = current version, Green = new version. Once Green is fully validated, we switch traffic.
+**Real-time example:** When deploying a major version upgrade or risky configuration change. If any issue appears, we immediately shift traffic back to Blue.
+
+**Then**, we use **Canary Deployment** for high-risk features. We release the new version to 5% or 10% of users, monitor logs, latency, and error rates, and then expand gradually.
+**Real-time example:** Testing new API versions or performance-heavy changes.
+
+**Finally**, we use **Recreate** only for stateful apps where both versions cannot run together.
+
+---
 
 
 
