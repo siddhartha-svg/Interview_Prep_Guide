@@ -225,6 +225,31 @@ This ensures quick recovery.
 
 ---
 
+11.**how to override values.yaml for multiple environments**:
+
+---
+
+## ⭐ **How Do You Override values.yaml for Multiple Environments? (150 Words)**
+
+**First**, I follow a pattern where the main **values.yaml** file holds default configuration shared across all environments. For environment-specific settings (dev, QA, stage, prod), I create separate override files such as **values-dev.yaml**, **values-qa.yaml**, and **values-prod.yaml**. This keeps configurations clean, isolated, and easy to manage.
+
+**Next**, during deployment, I instruct Helm to override the default values using the `-f` option. Example:
+
+```bash
+helm upgrade --install app ./chart -f values-prod.yaml
+```
+
+This merges **values-prod.yaml** on top of the base values.yaml.
+
+**Then**, for complex environments, I use **multiple override layers**, such as base + region + environment files:
+
+```bash
+helm upgrade app ./chart -f base.yaml -f region-us.yaml -f prod.yaml
+```
+
+**Finally**, I store all values files in Git and apply them through CI/CD pipelines (GitHub Actions, ArgoCD, Jenkins). This ensures each environment gets consistent, version-controlled configurations with safe rollbacks.
+
+---
 
 
 
