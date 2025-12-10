@@ -102,7 +102,32 @@ behavior:
 
 ---
 
+5.**ClusterIP vs NodePort vs LoadBalancer** using your preferred **First → Next → Then → Finally** format:
 
+---
+
+### ⭐ **Kubernetes Networking – ClusterIP, NodePort, LoadBalancer (150 Words)**
+
+**First**, **ClusterIP** is the default service type in Kubernetes. It exposes the service **inside the cluster only** using a stable internal IP. Pods, Deployments, and microservices use this type to communicate with each other.
+**Use case:** Internal APIs, databases, backend services.
+
+**Next**, **NodePort** exposes the service **on every node’s IP** at a specific port (30000–32767). External users can access the service using:
+
+```
+<NodeIP>:<NodePort>
+```
+
+NodePort is mainly used for testing, development, or when you want to put an external load balancer in front of the cluster.
+
+**Then**, **LoadBalancer** creates an **external cloud load balancer** (AWS/Azure/GCP) and routes traffic to your service. This is the easiest way to expose applications to the internet in production.
+
+**Finally**, the difference is simple:
+
+* **ClusterIP → internal traffic**
+* **NodePort → expose on node IP**
+* **LoadBalancer → expose publicly with cloud LB**
+
+---
 
 
 
