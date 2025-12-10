@@ -349,7 +349,30 @@ If pods are stuck in *ContainerCreating*, *Pending*, or *ImagePullBackOff*, that
 
 ---
 
+---
 
+17. ## ⭐ **Deployment Succeeded but Pod Not Receiving Traffic — Where Will You Check? **
+
+**First**, I verify whether the **pod is Ready** even though the deployment succeeded. A pod may be Running but not Ready due to failing readiness probes. I check using:
+
+```bash
+kubectl get pods
+kubectl describe pod <pod>
+```
+
+If readiness probes fail, Kubernetes will *not* send traffic to the pod through the Service.
+
+**Next**, I check the **Service configuration**. I confirm selectors match the pod labels correctly. A common issue is mismatched labels, causing the Service to have **0 endpoints**. I check:
+
+```bash
+kubectl get endpoints <service>
+```
+
+**Then**, I inspect **networking and port mappings**. The Service port must match the container’s targetPort. Ingress rules must point to the correct Service name and port. I also verify that NetworkPolicies are not blocking internal traffic.
+
+**Finally**, if everything seems correct, I check **DNS resolution, kube-proxy rules, and Ingress controller logs** to ensure traffic is being routed correctly. Fixing labels, ports, or probes usually resolves the issue.
+
+---
 
 
 
