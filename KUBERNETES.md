@@ -1,4 +1,4 @@
-**“How you would troubleshoot CrashLoopBackOff in production”**, using **First → Next → Then → Finally** format:
+1. **“How you would troubleshoot CrashLoopBackOff in production”**, using **First → Next → Then → Finally** format:
 
 ---
 
