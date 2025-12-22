@@ -1,3 +1,4 @@
+"""
 pipeline {
     agent { ... }
     stages {
@@ -6,3 +7,4 @@ pipeline {
         stage('Deploy') { ... }
     }
 }
+"""
