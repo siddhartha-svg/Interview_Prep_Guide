@@ -3,8 +3,11 @@ pipeline {
     agent { ... }
     stages {
         stage('Checkout') { ... }
-        stage('Build') { ... }
-        stage('Deploy') { ... }
+        stage('Build & Test') { ... }
+        stage('SonarQube Analysis') { ... }
+        stage('Build Docker Image') { ... }
+        stage('Push Docker Image') { ... }
+        stage('Deploy to Kubernetes') {...}
     }
 }
 """
