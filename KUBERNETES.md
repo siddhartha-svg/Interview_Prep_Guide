@@ -401,7 +401,15 @@ When a pod sends a request to this DNS name, kube-proxy routes traffic to one of
 ---
 
 
+---
+19.**First**, during a **production outage**, the client faced **intermittent 502/504 errors** from the **Ingress Controller**, and multiple engineers couldn’t isolate the root cause. I immediately analyzed **NGINX access logs**, **Ingress annotations**, and **service endpoints**, identifying a **misconfigured timeout** combined with uneven backend pod readiness.
 
+**Next**, while traffic stabilized, I noticed a second issue: **TLS handshake failures** after a certificate rotation. Others assumed a cert-manager bug, but I traced it to an **expired secret reference** still attached to older Ingress rules. I corrected the secret mapping and enforced **automated validation checks** in CI/CD.
 
+**Then**, a third issue surfaced under load—**Ingress pods were throttling CPU**, causing request drops. I tuned **resource requests/limits**, enabled **HPA based on latency metrics**, and validated behavior with real-time traffic.
+
+**Finally**, these **real-time fixes** restored stability without downtime, improved **observability**, and established **preventive controls**, demonstrating calm execution, deep Kubernetes knowledge, and strong **production ownership** under pressure.
+
+---
 
 
