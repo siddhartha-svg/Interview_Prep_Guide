@@ -8,7 +8,9 @@ ec2-terraform/
 ├── main.tf
 ├── variables.tf
 └── outputs.tf
+```
 
+```
 provider.tf
 
 terraform {
@@ -23,7 +25,9 @@ terraform {
 provider "aws" {
   region = var.aws_region
 }
+```
 
+```
 variables.tf
 
 variable "aws_region" {
@@ -37,7 +41,8 @@ variable "instance_type" {
   type        = string
   default     = "t3.micro"
 }
-
+```
+```
 main.tf
 
 data "aws_ami" "amazon_linux" {
@@ -60,6 +65,9 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
+```
+
+```
 resource "aws_instance" "web_server" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = var.instance_type
@@ -69,7 +77,9 @@ resource "aws_instance" "web_server" {
     Environment = "dev"
   }
 }
+```
 
+```
 outputs.tf
 
 output "instance_id" {
@@ -79,7 +89,7 @@ output "instance_id" {
 output "public_ip" {
   value = aws_instance.web_server.public_ip
 }
-
+```
 Then run:
 
 aws configure
