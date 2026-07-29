@@ -1,6 +1,7 @@
 Terraform script to create an AWS EC2 instance, useful for both practice and interviews.
-
+```
 Folder structure
+
 
 ec2-terraform/
 ├── provider.tf
@@ -89,6 +90,8 @@ terraform validate
 terraform plan
 terraform apply
 
+
+```
 To remove the instance:
 
 terraform destroy
